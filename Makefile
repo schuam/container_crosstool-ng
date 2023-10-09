@@ -37,7 +37,7 @@ image:
 	$(IBT) build \
 		-f $(IMAGE_FILE) \
 		-t $(IMAGE_NAME):latest \
-		-t $(IMAGE_NAME):`$(GIT) describe --tags --dirty` \
+		-t $(IMAGE_NAME):`$(GIT) describe --tags --dirty --always` \
 		.
 
 
