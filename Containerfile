@@ -1,4 +1,12 @@
-FROM ubuntu:22.04
+ARG BASE_OS=ubuntu
+ARG BASE_OS_VERSION=22.04
+ARG BASE_IMAGE=${BASE_OS}:${BASE_OS_VERSION}
+
+FROM ${BASE_IMAGE}
+
+ARG CTNG_NAME=crosstool-ng
+ARG CTNG_VERSION=1.26.0
+ARG CTNG_VERSION_GIT_TAG=${CTNG_NAME}-${CTNG_VERSION}
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
