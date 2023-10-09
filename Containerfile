@@ -6,6 +6,7 @@ RUN apt-get update \
         automake \
         bison \
         bzip2 \
+        ca-certificates \
         cmake \
         flex \
         g++ \
