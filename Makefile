@@ -2,8 +2,14 @@
 # constants
 # -----------------------------------------------------------------------------
 
-IMAGE_NAME := schuam/crosstool-ng
+BASE_OS := ubuntu
+BASE_OS_VERSION := 22.04
+
 IMAGE_FILE := Containerfile
+IMAGE_NAME := schuam/crosstool-ng
+
+CTNG_VERSION := 1.26.0
+
 IBT := podman    # IBT stands for "image build tool"
 GIT := git
 
@@ -37,7 +43,12 @@ image:
 	$(IBT) build \
 		-f $(IMAGE_FILE) \
 		-t $(IMAGE_NAME):latest \
+		-t $(IMAGE_NAME):$(BASE_OS)-latest \
+		-t $(IMAGE_NAME):$(CTNG_VERSION) \
+		-t $(IMAGE_NAME):$(CTNG_VERSION)-$(BASE_OS)-$(BASE_OS_VERSION) \
 		-t $(IMAGE_NAME):`$(GIT) describe --tags --dirty --always` \
+		--build-arg BASE_OS=$(BASE_OS) \
+		--build-arg BASE_OS_VERSION=$(BASE_OS_VERSION) \
+		--build-arg CTNG_VERSION=$(CTNG_VERSION) \
 		.
-
 
