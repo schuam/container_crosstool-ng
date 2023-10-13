@@ -12,15 +12,24 @@ Makefile to facilitate the container build process.
 
 ## Usage
 
-To build a toolchain for an embedded linux project, go into the project
-directory and run the following command to start the container (make sure to
-use the desired tag (e.g. `latest` as in the example):
+I have not pushed the image to Docker Hub or anywhere else (yet). This means
+you have to build the (Podman) container yourself. To do so, run:
+
+```bash
+make image
+```
+
+After that you can use the image to build a toolchain with `crosstool-ng`. To
+build a toolchain for an embedded linux project, go into the project directory
+and run the following command to start the container (make sure to use the
+desired tag (e.g. `latest` as in the example):
 
 ```bash
 podman run -it --rm -v .:/data schuam/crosstool-ng:latest
 ```
 
 In the container, you can use the `ct-ng` command to configure and build your
-toolchains. A built toolchain can be found in the sub-drirectory `x-tool` of
-your project directory.
+toolchains (visit the [crosstool-NG home page](https://crosstool-ng.github.io/)
+for documentation on how to do that). Once a toolchain is build, it can be
+found in the sub-drirectory `x-tool` of your project directory.
 
